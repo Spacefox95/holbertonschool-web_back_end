@@ -9,11 +9,6 @@ import random
 
 async def async_generator():
     """ Yield a random number """
-    loop = asyncio.get_running_loop()
-    end_time = loop.time() + 10.0
-    while True:
-        delay: float = random.uniform(0, 10)
-        if (loop.time() + 1.0) >= end_time:
-            break
+    for i in range(10):
         await asyncio.sleep(1)
-        yield delay
+        yield random.uniform(0, 10)
