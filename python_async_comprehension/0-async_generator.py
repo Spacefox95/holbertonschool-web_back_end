@@ -5,6 +5,7 @@ Coroutine looping 10times and yield a random number
 
 import asyncio
 import random
+from typing import Generator
 
 
 async def async_generator():
