@@ -1,4 +1,4 @@
 // Delete all documents with keyword in the collection
-db.school.deleteOne(
+db.school.deleteMany(
 	{ "name" : "Holberton school" }
 )
