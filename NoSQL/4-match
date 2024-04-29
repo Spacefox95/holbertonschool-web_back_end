@@ -1,2 +1,2 @@
 // List all documents with keyword in collection
-db.school.find({name: "Holberton school"})
+db.school.find({ "name": "Holberton school" })
