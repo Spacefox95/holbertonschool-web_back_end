@@ -1,0 +1,1 @@
+New project, first javascript
