@@ -15,7 +15,7 @@ class FIFOCache(BaseCaching):
 
     def put(self, key, item):
         """Add an item to the cache with FIFO eviction if needed"""
-        if key is not None or item is not None:
+        if key is not None and item is not None:
             if key not in self.cache_data:
                 self.order.append(key)
             self.cache_data[key] = item

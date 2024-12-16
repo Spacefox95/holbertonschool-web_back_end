@@ -17,12 +17,11 @@ class LIFOCache(BaseCaching):
         """Add an item to the cache with LIFO eviction if needed"""
         if key is not None and item is not None:
             self.cache_data[key] = item
-            if key != self.last_key:
-                self.last_key = key
             if len(self.cache_data) > BaseCaching.MAX_ITEMS:
-                del self.cache_data[self.last_key]
-                print(f'DISCARD: {self.last_key}')
-                self.last_key = key
+                if self.last_key is not None:
+                    print(f'DISCARD: {self.last_key}')
+                    del self.cache_data[self.last_key]
+            self.last_key = key
 
     def get(self, key):
         """Retrieve an item from the cache"""
