@@ -20,7 +20,7 @@ class FIFOCache(BaseCaching):
                 self.order.append(key)
             self.cache_data[key] = item
 
-        if len(self.cache_data > BaseCaching.MAX_ITEMS):
+        if len(self.cache_data) > BaseCaching.MAX_ITEMS:
             oldest_key = self.order.pop(0)
             del self.cache_data[oldest_key]
             print(f'DISCARD: {oldest_key}')
