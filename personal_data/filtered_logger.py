@@ -14,6 +14,5 @@ def filter_datum(fields, redaction, message, separator):
         re.escape(f) + r'=[^' + re.escape(separator) + r']*' for f in fields
     ]
     filter = f"({'|'.join(escape_filter)})"
-    return re.sub(filter, lambda match: match
-                  .group(0)
+    return re.sub(filter, lambda match: match.group(0)
                   .split('=')[0] + f"={redaction}", message)
