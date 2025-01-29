@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Module for filtering log messages by redacting sensitive information.
+Function to filter the message
 """
 
 import logging
@@ -12,8 +12,8 @@ def filter_datum(fields: List[str], redaction: str,
                  message: str, separator: str) -> str:
     """Replaces sensitive fields with a redaction string."""
     for f in fields:
-        pattern = rf"{re.escape(f)}=[^ {re.escape(separator)}]*"
-        message = re.sub(pattern, f"{f}={redaction}", message)
+        message = re.sub(f + "=.*?" + separator,
+                         f + "=" + redaction + separator, message)
     return message
 
 
