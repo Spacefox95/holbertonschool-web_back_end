@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-
 """
 Function to filter the message
 """
