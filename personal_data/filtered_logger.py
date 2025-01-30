@@ -63,3 +63,19 @@ def get_logger() -> logging.Logger:
     logger.addHandler(stream_handler)
 
     return logger
+
+def main():
+    db = get_db()
+    cursor = db.cursor()
+    cursor.execute("SELECT * FROM users")
+    colums = [desc[0] for desc in cursor.description]
+
+    for row in cursor.fetchall():
+        row_data = ";".join(f"{col}={val}" for col, val in zip(colums, row))
+        get_logger().info(row_data)
+    
+    cursor.close()
+    db.close()
+
+if __name__ == "__main__":
+    main()
