@@ -12,7 +12,7 @@ from typing import List
 PII_FIELDS = ("name", "email", "phone", "ssn", "password")
 
 
-def get_db():
+def get_db() -> mysql.connector:
     """ Returns a SQL database connection"""
     return mysql.connector.connect(
         user=os.getenv("PERSONAL_DATA_DB_USERNAME", "root"),
