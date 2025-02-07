@@ -9,7 +9,9 @@ from api.v1.auth.auth import Auth
 class BasicAuth(Auth):
     """Class for authentification with basic encoding"""
 
-    def extract_base64_authorization_header(self, authorization_header: str) -> str:
+    def extract_base64_authorization_header(
+            self,
+            authorization_header: str) -> str:
         """Get the basic authorization"""
         if authorization_header is None:
             return None
