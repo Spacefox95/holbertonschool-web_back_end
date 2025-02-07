@@ -25,7 +25,7 @@ def not_found(error) -> str:
 def forbidden(error) -> str:
     """ Not allowed
     """
-    return jsonify({"error": "Not found"}), 403
+    return jsonify({"error": "Forbidden"}), 403
 
 
 @app.errorhandler(401)
