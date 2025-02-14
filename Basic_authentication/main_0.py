@@ -26,7 +26,7 @@ print(u.display_name() if u is not None else "None")
 u = a.user_object_from_credentials(89, 98)
 print(u.display_name() if u is not None else "None")
 
-u = a.user_object_from_credentials("email@notfound.com", "pwd")
+u = a.user_object_from_credentials("u1@gmail.com", "pwd")
 print(u.display_name() if u is not None else "None")
 
 u = a.user_object_from_credentials(user_email, "pwd")
