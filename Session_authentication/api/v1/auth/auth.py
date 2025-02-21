@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """API authentification"""
 
+import os
 from typing import List, TypeVar
 
 
@@ -28,3 +29,10 @@ class Auth:
     def current_user(self, request=None) -> TypeVar("User"):
         """flask request object"""
         return None
+
+    def session_cookie(self, request=None):
+        if not request:
+            return None
+        session_name = os.getenv("SESSION_NAME", "_my_session_id")
+
+        return request.cookies.get(session_name)
