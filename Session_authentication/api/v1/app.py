@@ -32,7 +32,12 @@ if auth_type:
 @app.before_request
 def load_user():
     """Load the user authorization"""
-    p_path = ["/api/v1/status/", "/api/v1/unauthorized/", "/api/v1/forbidden/"]
+    p_path = [
+        "/api/v1/status/",
+        "/api/v1/unauthorized/",
+        "/api/v1/forbidden/",
+        "/api/v1/auth_session/login/"
+    ]
     if auth is None:
         return
     if request.path in p_path:
@@ -41,10 +46,13 @@ def load_user():
         return
     if auth.authorization_header(request) is None:
         abort(401)
-    if auth.current_user(request) is None:
-        abort(403)
+    if auth.session_cookie(request) is None:
+        abort(401)
 
     request.current_user = auth.current_user(request)
+
+    if auth.current_user(request) is None:
+        abort(403)
 
 
 @app.errorhandler(404)
