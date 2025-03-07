@@ -3,6 +3,7 @@
 """DB module
 """
 from sqlalchemy import create_engine
+from sqlalchemy.exc import NoResultFound, InvalidRequestError
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm.session import Session
@@ -38,3 +39,15 @@ class DB:
         self._session.commit()
         self._session.refresh(new_user)
         return new_user
+
+    def find_user_by(self, **kwargs) -> User:
+        """ Find a user by arbitrary parameter"""
+        if not kwargs:
+            raise InvalidRequestError("No argument provided for search")
+        try:
+            user_select = self._session.query(User).filter_by(**kwargs).first()
+            if user_select is None:
+                raise NoResultFound
+            return user_select
+        except InvalidRequestError:
+            raise
