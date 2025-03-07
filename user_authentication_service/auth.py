@@ -41,5 +41,9 @@ class Auth:
         except NoResultFound:
             return False
 
+        hashed_password = valid_user.hashed_password
+        if isinstance(hashed_password, str):
+            hashed_password = hashed_password.encode("utf-8")
+
         return bcrypt.checkpw(
-            password.encode('utf-8'), valid_user.hashed_password)
+            password.encode('utf-8'), hashed_password)
