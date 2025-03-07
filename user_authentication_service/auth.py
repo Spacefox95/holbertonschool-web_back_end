@@ -2,6 +2,7 @@
 
 """ Password hashing function"""
 
+import uuid
 import bcrypt
 from db import DB
 from user import User
@@ -47,3 +48,7 @@ class Auth:
 
         return bcrypt.checkpw(
             password.encode('utf-8'), hashed_password)
+
+    def _generate_uuid() -> str:
+        """ Generate a uuid"""
+        return uuid.uuid4()
