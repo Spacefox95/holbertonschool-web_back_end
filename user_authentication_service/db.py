@@ -59,7 +59,7 @@ class DB:
 
             for key, value in kwargs.items():
                 if not hasattr(user, key):
-                    raise ValueError(f"Invalide attribure: {key}")
+                    raise ValueError(f"Invalide attribute: {key}")
                 setattr(user, key, value)
 
             self._session.commit()

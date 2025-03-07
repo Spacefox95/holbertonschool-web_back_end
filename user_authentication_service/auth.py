@@ -34,7 +34,7 @@ class Auth:
             new_user = self._db.add_user(email, new_user_password)
             return new_user
 
-    def valid_login(self, email, password) -> bool:
+    def valid_login(self, email: str, password: str) -> bool:
         """ Check the user exist"""
         try:
             valid_user = self._db.find_user_by(email=email)
