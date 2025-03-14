@@ -3,7 +3,8 @@
 Route module for the API
 """
 
-from flask import Flask, abort, jsonify, make_response, redirect, request
+from flask import Flask
+from flask import Response, abort, jsonify, make_response, redirect, request
 
 from auth import Auth
 
@@ -49,16 +50,27 @@ def login():
     return response
 
 
-@app.route('/sessions', methods=['DELETE'], strict_slashes=False)
-def logout():
+@app.route("/sessions", methods=["DELETE"])
+def logout() -> Response:
+    """
+    DELETE route that logs out a user.
+
+    Returns:
+        Response: a JSON response containing:
+            - On success: redirect response to the home page.
+            - On failure: a 403 status code if the session is invalid.
+    """
+
     session_id = request.cookies.get("session_id")
     if not session_id:
         abort(403)
+
     user = AUTH.get_user_from_session_id(session_id)
+
     if user is None:
         abort(403)
 
-    Auth.destroy_session(user.id)
+    AUTH.destroy_session(user.id)
     return redirect("/")
 
 
