@@ -88,6 +88,6 @@ class Auth:
             raise ValueError('User does not exist')
 
         reset_token = _generate_uuid()
-        self._db.update_user(user_id=user.id, reset_token=reset_token)
+        self._db.update_user(user_id=user.id, session_id=reset_token)
 
         return reset_token
