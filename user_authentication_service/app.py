@@ -51,16 +51,7 @@ def login():
 
 
 @app.route("/sessions", methods=["DELETE"])
-def logout() -> Response:
-    """
-    DELETE route that logs out a user.
-
-    Returns:
-        Response: a JSON response containing:
-            - On success: redirect response to the home page.
-            - On failure: a 403 status code if the session is invalid.
-    """
-
+def logout():
     session_id = request.cookies.get("session_id")
     if not session_id:
         abort(403)
