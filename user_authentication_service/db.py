@@ -41,16 +41,37 @@ class DB:
         return new_user
 
     def find_user_by(self, **kwargs) -> User:
-        """ Find a user by arbitrary parameter"""
-        if not kwargs:
-            raise InvalidRequestError("No argument provided for search")
-        try:
-            user_select = self._session.query(User).filter_by(**kwargs).first()
-            if user_select is None:
-                raise NoResultFound
-            return user_select
-        except InvalidRequestError:
-            raise
+        """
+        Finds the first user that matches the given filters.
+
+        Args:
+            **kwargs: arbitrary keyword arguments to filter the query.
+
+        Returns:
+            User: the first matching user.
+
+        Raises:
+            NoResultFound: if no user matches the query.
+            InvalidRequestError: if an invalid field is passed.
+        """
+
+        session = self._session
+
+        # Validate provided column names.
+        valid_columns = User.__table__.columns.keys()
+
+        for key in kwargs.keys():
+            if key not in valid_columns:
+                raise InvalidRequestError(f"Invalid column name: {key}")
+
+        # Execute query with dynamic filters.
+        user = session.query(User).filter_by(**kwargs).first()
+
+        if user is None:
+            raise NoResultFound("No user found matching the criteria.")
+
+        return user
+
 
     def update_user(self, user_id: int, **kwargs) -> None:
         """ Update user parameters"""
