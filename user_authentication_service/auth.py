@@ -12,11 +12,7 @@ from sqlalchemy.exc import NoResultFound
 
 def _hash_password(password: str) -> bytes:
     """ Transform the password in bytes and hash it"""
-    byte_password = str.encode(password)
-    salt = bcrypt.gensalt()
-    hashed = bcrypt.hashpw(byte_password, salt)
-
-    return hashed
+    return bcrypt.hashpw(password.encode("utf-8"), bcrypt.gensalt())
 
 
 def _generate_uuid() -> str:
