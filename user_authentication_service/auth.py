@@ -113,6 +113,6 @@ class Auth:
         except NoResultFound:
             raise ValueError
 
-        hd_pwd = self._hash_password(password)
+        hd_pwd = _hash_password(password)
 
         self._db.update_user(user.id, hashed_password=hd_pwd, reset_token=None)
