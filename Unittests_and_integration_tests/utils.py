@@ -3,9 +3,9 @@
 """Generic utilities for github org client.
 """
 import requests
+from collections.abc import Mapping
 from functools import wraps
 from typing import (
-    Mapping,
     Sequence,
     Any,
     Dict,
