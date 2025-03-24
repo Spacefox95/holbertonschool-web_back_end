@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
+""" Test file for utils"""
 
 import unittest
 from unittest.mock import Mock, patch
 from parameterized import parameterized
 
 from unittest import TestCase
-
-import requests
 
 import utils
 
@@ -51,6 +50,7 @@ class TestGetJson(unittest.TestCase):
 class TestMemoize(unittest.TestCase):
     """ Unittest class for utils.memoize """
     def test_memoize(self):
+        """ Method to test memoization"""
         class TestClass:
             """ Test class """
 
