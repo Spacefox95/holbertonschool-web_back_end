@@ -31,6 +31,8 @@ class TestGithubOrgClient(unittest.TestCase):
         self.assertEqual(result, {"login": org_name})
 
     def test_public_repos_url(self):
+        """ Test public_repos_url method"""
+
         mocked_payload = {
             "repos_url": "https://api.github.com/orgs/test_org/repos"}
 
