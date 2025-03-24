@@ -3,7 +3,7 @@
 
 import unittest
 from unittest.mock import MagicMock, PropertyMock, patch
-from parameterized import parameterized
+from parameterized import parameterized, parameterized_class
 from fixtures import TEST_PAYLOAD
 
 
@@ -81,6 +81,12 @@ class TestGithubOrgClient(unittest.TestCase):
         self.assertEqual(result, expected)
 
 
+@parameterized_class([
+    ("org_payload", TEST_PAYLOAD.org_payload),
+    ("repos_payload", TEST_PAYLOAD.repos_payload),
+    ("expected_repos", TEST_PAYLOAD.expected_repos),
+    ("apache2_repos", TEST_PAYLOAD.apache2_repos),
+])
 class TestIntegrationGithubOrgClient(unittest.TestCase):
     """ Integration test for GithubOrgClient"""
 
@@ -94,8 +100,8 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
             repo["name"] for repo in cls.repos_payload
             if repo.get("license") and repo["license"]["key"] == "apache-2.0"]
 
-        cls.get_patch = patch('requests.get')
-        cls.mock_get = cls.get_patch.start()
+        cls.get_patcher = patch('requests.get')
+        cls.mock_get = cls.get_patcher.start()
 
         def side_effect(url):
             mock_response = MagicMock()
@@ -110,7 +116,7 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
     @classmethod
     def tearDownClass(cls):
         """Stop patching"""
-        cls.get_patch.stop()
+        cls.get_patcher.stop()
 
     def test_public_repos(self):
         """ Test public_repos return correct repo names"""
