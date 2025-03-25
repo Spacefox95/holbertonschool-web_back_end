@@ -30,8 +30,8 @@ def get_locale():
 
 def get_user():
     """ Retrieve user information from login_as parameter"""
-    user_id = request.args.get('login_as')
-    if user_id and user_id in users:
+    if "login_as" in request.args:
+        user_id = int(request.args['login_as'])
         return users.get(user_id)
     return None
 
