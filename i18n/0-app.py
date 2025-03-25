@@ -9,9 +9,10 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    title = 'Welcome to Holberton'
-    h1 = 'Hello World'
     """ Return to the main page"""
+    title = "Welcome to Holberton"
+    h1 = 'Hello world'
+
     return render_template('0-index.html',
                            title=title,
                            h1=h1)
