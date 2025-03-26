@@ -20,11 +20,11 @@ msgstr ""
 
 #: templates/3-index.html:6 templates/4-index.html:6 templates/5-index.html:6
 msgid "home_title"
-msgstr ""
+msgstr "Bienvenue chez Holberton"
 
 #: templates/3-index.html:9 templates/4-index.html:9 templates/5-index.html:9
 msgid "home_header"
-msgstr ""
+msgstr "Bonjour monde!"
 
 #: templates/5-index.html:11
 msgid "logged_in_as"
