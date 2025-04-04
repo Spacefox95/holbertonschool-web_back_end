@@ -73,18 +73,20 @@ class Cache():
         """ Get the value for an int key"""
         return self.get(key=key, fn=int)
 
-    def replay(method: Callable):
-        replay = method._self._redis
-        qualname = method.__qualname__
 
-        input_key = method.__qualname__ + ":inputs"
-        ouput_key = method.__qualname__ + ":outputs"
+def replay(method: Callable):
+    """Display the history of calls of a particular function."""
+    replay = redis.Redis()
+    qualname = method.__qualname__
 
-        inputs = replay.lrange(input_key, 0, -1)
-        outputs = replay.lrange(ouput_key, 0, -1)
-        call_count = replay.get(qualname)
+    input_key = method.__qualname__ + ":inputs"
+    ouput_key = method.__qualname__ + ":outputs"
 
-        print(f"{qualname} was called {int(call_count)} times:")
-        for inp, out in zip(inputs, outputs):
-            print(
-                f"{qualname}(*{inp.decode('utf-8')}) -> {out.decode('utf-8')}")
+    inputs = replay.lrange(input_key, 0, -1)
+    outputs = replay.lrange(ouput_key, 0, -1)
+    call_count = replay.get(qualname)
+
+    print(f"{qualname} was called {int(call_count)} times:")
+    for inp, out in zip(inputs, outputs):
+        print(
+            f"{qualname}(*{inp.decode('utf-8')}) -> {out.decode('utf-8')}")
