@@ -1,0 +1,20 @@
+#!/usr/bin/env python3
+
+import uuid
+import redis
+
+""" Cache class for redis"""
+
+
+class Cache():
+    """ Base Cache class"""
+    def __init__(self):
+        """ Cache class variables"""
+        self._redis = redis.Redis()
+        self._redis.flushdb()
+
+    def store(self, data: str | bytes | int | float) -> str:
+        """ Genereate a key and store the data in redis"""
+        key = str(uuid.uuid4())
+        self._redis.set(key, data)
+        return key
