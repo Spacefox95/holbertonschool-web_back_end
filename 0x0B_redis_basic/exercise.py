@@ -9,7 +9,8 @@ import redis
 
 class Cache():
     """ Base Cache class"""
-    def __init__(self) -> None:
+
+    def __init__(self):
         """ Cache class variables"""
         self._redis = redis.Redis()
         self._redis.flushdb()
