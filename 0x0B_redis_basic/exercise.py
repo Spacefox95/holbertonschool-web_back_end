@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+from typing import Union
 import uuid
 import redis
 
@@ -13,7 +14,7 @@ class Cache():
         self._redis = redis.Redis()
         self._redis.flushdb()
 
-    def store(self, data: str | bytes | int | float) -> str:
+    def store(self, data: Union[str | bytes | int | float]) -> str:
         """ Genereate a key and store the data in redis"""
         key = str(uuid.uuid4())
         self._redis.set(key, data)
