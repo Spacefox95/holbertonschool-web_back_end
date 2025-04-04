@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 
+""" Cache class for redis"""
+
 from typing import Union
 import uuid
 import redis
 
-""" Cache class for redis"""
+
 
 
 class Cache():
