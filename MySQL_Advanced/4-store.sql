@@ -1,4 +1,5 @@
-DELIMITER $$
+-- Create a trigger on quantity decrease
+ $$
 
 CREATE TRIGGER item_quantity
 AFTER INSERT ON orders
