@@ -1,5 +1,5 @@
 -- Create a trigger on quantity decrease
- $$
+DELIMITER $$
 
 CREATE TRIGGER item_quantity
 AFTER INSERT ON orders
@@ -9,4 +9,6 @@ BEGIN
 	SET quantity = quantity - NEW.number
 	WHERE name = NEW.item_name;
 
-END;$$
+END$$
+
+DELIMITER;
