@@ -1,33 +1,32 @@
 -- Create a procedure to add a new correction for student
-DELIMITER $$ CREATE PROCEDURE AddBonus (
-	IN p_user_id INT,
-	IN p_project_name VARCHAR(255),
-	IN p_score INT
-) BEGIN DECLARE v_project_id INT;
+DELIMITER $$ 
 
-SELECT
-	id INTO v_project_id
-FROM
-	projects
-WHERE
-	name = p_project_name
-LIMIT
-	1;
+CREATE PROCEDURE AddBonus (
+	IN user_id INT,
+	IN project_name VARCHAR(255),
+	IN score INT
+) BEGIN
 
-IF v_project_id IS NULL THEN
-INSERT INTO
-	projects (name)
-VALUES
-	(p_project_name);
+-- Insert the project if not exist
+INSERT INTO projects (name)
+SELECT project_name
+FROM DUAL
+WHERE NOT EXISTS (
+	SELECT 1
+	FROM projects
+	WHERE name = project_name
+);
 
-SET
-	v_project_id = LAST_INSERT_ID ();
-
-END IF;
+-- Insert the correction
 
 INSERT INTO
 	corrections (user_id, project_id, score)
 VALUES
-	(p_user_id, v_project_id, p_score);
+	(user_id,
+	(SELECT id FROM projects WHERE name = project_name),
+	score
+	);
 
-END $$DELIMITER;
+END $$
+
+DELIMITER;
