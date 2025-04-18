@@ -1,5 +1,5 @@
 -- Create a procedure to add a new correction for student
-DELIMITER / / CREATE PROCEDURE AddBonus (
+DELIMITER $$ CREATE PROCEDURE AddBonus (
 	IN p_user_id INT,
 	IN p_project_name VARCHAR(255),
 	IN p_score INT
@@ -30,4 +30,4 @@ INSERT INTO
 VALUES
 	(p_user_id, v_project_id, p_score);
 
-END / / DELIMITER;
+END $$DELIMITER;
