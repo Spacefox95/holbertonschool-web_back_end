@@ -5,4 +5,4 @@ function calculateNumber(type, a, b) {
   if (type === "DIVIDE")
     return Math.round(b) === 0 ? "Error" : Math.round(a) / Math.round(b);
 }
-export default calculateNumber;
+module.exports = calculateNumber;
