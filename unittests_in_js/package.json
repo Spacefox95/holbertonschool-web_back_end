@@ -3,6 +3,9 @@
     "test": "mocha --file"
   },
   "devDependencies": {
+    "chai": "^5.2.0",
     "mocha": "^11.1.0"
-  }
+  },
+  "type": "module"
+
 }
