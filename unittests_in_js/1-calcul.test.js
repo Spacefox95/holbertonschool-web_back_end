@@ -41,8 +41,9 @@ describe("calculateNumber", function () {
   it("Sum when both are rounded up.", () => {
     assert.strictEqual(calculateNumber(1.4, 0, "DIVIDE"), "Error");
   });
+
   it("Divide when a = 0", () => {
-    assert.strictEqual(calculateNumber("DIVIDE", 0, 42), 0);
+    assert.strictEqual(calculateNumber(0, 42, "DIVIDE"), 0);
   });
 });
 
