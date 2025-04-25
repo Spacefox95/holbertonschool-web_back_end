@@ -7,7 +7,7 @@ describe("calculateNumber", function () {
   });
 
   it("Sum when a is a float.", () => {
-    assert.strictEqual(calculateNumber(1.2, 3), 4);
+    assert.strictEqual(calculateNumber(1, 3.7), 5);
   });
 
   it("Sum when b is a float.", () => {
