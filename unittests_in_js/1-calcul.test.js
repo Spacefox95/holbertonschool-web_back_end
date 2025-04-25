@@ -19,17 +19,18 @@ describe("Addition", function () {
   });
 
   describe("Substraction", function () {
-		it("Subtract when both are integers.", () => {
-			assert.strictEqual(calculateNumber(1, 3, "SUBTRACT"), -2);
-	});
+    it("Subtract when both are integers.", () => {
+      assert.strictEqual(calculateNumber(1, 3, "SUBTRACT"), -2);
+    });
 
-	it("Subtract when a is a float.", () => {
-			assert.strictEqual(calculateNumber(1.2, 3, "SUBTRACT"), -2);
-	});
+    it("Subtract when a is a float.", () => {
+      assert.strictEqual(calculateNumber(1.2, 3, "SUBTRACT"), -2);
+    });
 
-	it("Subtract when b is a float.", () => {
-			assert.strictEqual(calculateNumber( 1, 3.7, "SUBTRACT", ), -3);
-	});
+    it("Subtract when b is a float.", () => {
+      assert.strictEqual(calculateNumber(1, 3.7, "SUBTRACT"), -3);
+    });
+
     it("Subtract when a is rounded up & b is rounded down.", () => {
       assert.strictEqual(calculateNumber(1.7, 3.2, "SUBTRACT"), -1);
     });
@@ -41,9 +42,10 @@ describe("Addition", function () {
     it("Sum when both are rounded up.", () => {
       assert.strictEqual(calculateNumber(1.4, 4.5, "SUBTRACT"), -4);
     });
-		it("Subtract when both are rounded down.", () => {
-			assert.strictEqual(calculateNumber(1.7, 3.7, "SUBTRACT"), -2);
-	});
+
+    it("Subtract when both are rounded down.", () => {
+      assert.strictEqual(calculateNumber(1.7, 3.7, "SUBTRACT"), -2);
+    });
   });
 
   describe("Division", function () {
@@ -55,7 +57,18 @@ describe("Addition", function () {
       assert.strictEqual(calculateNumber(1.4, 4.5, "DIVIDE"), 0.2);
     });
 
-    it("Sum when both are rounded up.", () => {
+    it("Divide when both are rounded up.", () => {
+      assert.strictEqual(
+        calculateNumber(1.2, 3.2, "DIVIDE"),
+        0.3333333333333333
+      );
+    });
+
+    it("Divide when both are rounded down.", () => {
+      assert.strictEqual(calculateNumber(1.7, 3.7, "DIVIDE"), 0.5);
+    });
+
+    it("Divide when b = 0.", () => {
       assert.strictEqual(calculateNumber(1.4, 0, "DIVIDE"), "Error");
     });
 
