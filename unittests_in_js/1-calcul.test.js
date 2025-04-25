@@ -49,6 +49,17 @@ describe("Addition", function () {
   });
 
   describe("Division", function () {
+    it("Divide when both are integers.", () => {
+      assert.strictEqual(calculateNumber(1, 3, "DIVIDE"), 0.3333333333333333);
+    });
+
+    it("Divide when a is a float.", () => {
+      assert.strictEqual(calculateNumber(1.2, 3, "DIVIDE"), 0.3333333333333333);
+    });
+
+    it("Divide when b is a float.", () => {
+      assert.strictEqual(calculateNumber(1, 3.7, "DIVIDE"), 0.25);
+    });
     it("Divide when both are rounded up.", () => {
       assert.strictEqual(calculateNumber(1.5, 3.7, "DIVIDE"), 0.5);
     });
@@ -62,6 +73,10 @@ describe("Addition", function () {
         calculateNumber(1.2, 3.2, "DIVIDE"),
         0.3333333333333333
       );
+    });
+
+    it("Divide when a is rounded down & b is rounded up.", () => {
+      assert.strictEqual(calculateNumber(1.2, 3.7, "DIVIDE"), 0.25);
     });
 
     it("Divide when both are rounded down.", () => {
