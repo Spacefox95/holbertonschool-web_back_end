@@ -4,9 +4,9 @@ const Utils = require("./utils.js");
 const sendPaymentRequestToApi = require("./3-payment.js");
 
 describe("sendPaymentRequestToApi", function () {
-  it("should call Utils.calculateNumber with correct args", function () {
-    const spy = sinon.spy(Utils, "calculateNumber");
+  const spy = sinon.spy(Utils, "calculateNumber");
 
+  it("should call Utils.calculateNumber with correct args", () => {
     sendPaymentRequestToApi(100, 20);
 
     chai.expect(spy.calledOnce).to.be.true;
