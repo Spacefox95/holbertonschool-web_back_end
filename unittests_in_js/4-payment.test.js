@@ -1,14 +1,14 @@
-import { expect } from 'chai';
-import sinon from 'sinon';
-import { Utils } from './utils.js';
-import { sendPaymentRequestToApi } from './4-payment.js';
+import { expect } from "chai";
+import sinon from "sinon";
+const utils = require("./utils");
+import { sendPaymentRequestToApi } from "./4-payment.js";
 
 describe("sendPaymentRequestToApi", function () {
   let stub;
   let consoleSpy;
 
   beforeEach(() => {
-    stub = sinon.stub(Utils, "calculateNumber").returns(10);
+    stub = sinon.stub(utils, "calculateNumber").returns(10);
     consoleSpy = sinon.spy(console, "log");
   });
 
