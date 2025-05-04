@@ -6,7 +6,7 @@ const utils = require("./utils");
 
 describe("sendPaymentRequestToApi", function () {
   const spy = sinon.spy(utils, "calculateNumber");
-  const consolespy = sinon.spy(console, 'log')
+  const consolespy = sinon.spy(console, "log");
 
   it("should call Utils.calculateNumber with correct args", () => {
     sendPaymentRequestToApi(100, 20);
@@ -15,5 +15,6 @@ describe("sendPaymentRequestToApi", function () {
     expect(spy.calledWith("SUM", 100, 20)).to.be.true;
 
     spy.restore();
+    consolespy.restore();
   });
 });
