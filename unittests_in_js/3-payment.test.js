@@ -1,10 +1,12 @@
-import { expect } from 'chai';
-import sinon from 'sinon';
-import { Utils } from './utils.js';
-import { sendPaymentRequestToApi } from './3-payment.js';
+const sinon = require("sinon");
+const { expect } = require("chai");
+
+const sendPaymentRequestToApi = require("./3-payment");
+const utils = require("./utils");
 
 describe("sendPaymentRequestToApi", function () {
-  const spy = sinon.spy(Utils, "calculateNumber");
+  const spy = sinon.spy(utils, "calculateNumber");
+  const consolespy = sinon.spy(console, 'log')
 
   it("should call Utils.calculateNumber with correct args", () => {
     sendPaymentRequestToApi(100, 20);
