@@ -10,8 +10,8 @@ describe("sendPaymentRequestToApi", function () {
   it("should call Utils.calculateNumber with correct args", () => {
     sendPaymentRequestToApi(100, 20);
 
-    expect(spy.calledOnce).to.be.true;
-    expect(spy.calledWith("SUM", 100, 20)).to.be.true;
+    chai.expect(spy.calledOnce).to.be.true;
+    chai.expect(spy.calledWith("SUM", 100, 20)).to.be.true;
 
     spy.restore();
   });
