@@ -1,8 +1,7 @@
-const chai = require("chai");
-const sinon = require("sinon");
-const Utils = require("./utils.js");
-const sendPaymentRequestToApi = require("./3-payment.js");
-
+import { expect } from 'chai';
+import sinon from 'sinon';
+import './utils';
+import { sendPaymentRequestToApi } from './3-payment';
 
 describe("sendPaymentRequestToApi", function () {
   const spy = sinon.spy(Utils, "calculateNumber");
@@ -10,8 +9,8 @@ describe("sendPaymentRequestToApi", function () {
   it("should call Utils.calculateNumber with correct args", () => {
     sendPaymentRequestToApi(100, 20);
 
-    chai.expect(spy.calledOnce).to.be.true;
-    chai.expect(spy.calledWith("SUM", 100, 20)).to.be.true;
+    expect(spy.calledOnce).to.be.true;
+    expect(spy.calledWith("SUM", 100, 20)).to.be.true;
 
     spy.restore();
   });
