@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import sinon from 'sinon';
-import './utils';
-import { sendPaymentRequestToApi } from './3-payment';
+import { Utils } from './utils.js';
+import { sendPaymentRequestToApi } from './3-payment.js';
 
 describe("sendPaymentRequestToApi", function () {
   const spy = sinon.spy(Utils, "calculateNumber");
