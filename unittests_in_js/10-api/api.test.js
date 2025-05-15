@@ -6,9 +6,7 @@ describe("indexPageTest", function () {
 		request.get("http://localhost:7865", (error, response, body) => {
 			chai.expect(response.statusCode).to.equal(200);
 			chai.expect(body).to.equal("Welcome to the payment system");
-
 			if (error) return done(error);
-
 			done();
 		});
 	});
@@ -17,9 +15,7 @@ describe("indexPageTest", function () {
 		request.get("http://localhost:7865/cart/10", (error, response, body) => {
 			chai.expect(response.statusCode).to.equal(200);
 			chai.expect(body).to.equal("Payment methods for cart " + 10);
-
 			if (error) return done(error);
-
 			done();
 		});
 	});
@@ -28,9 +24,7 @@ describe("indexPageTest", function () {
 		request.get("http://localhost:7865/available_payments", (error, response, body) => {
 			chai.expect(response.statusCode).to.equal(200);
 			chai.expect(body).to.deep.equal('{"payment_methods":{"credit_cards":true,"paypal":false}}');
-
 			if (error) return done(error);
-
 			done();
 		});
 	})
@@ -39,9 +33,7 @@ describe("indexPageTest", function () {
 		request.post("http://localhost:7865/login", { json: { "userName": "Betty" } }, (error, response, body) => {
 			chai.expect(response.statusCode).to.equal(200);
 			chai.expect(body).to.equal("Welcome Betty");
-
 			if (error) return done(error);
-
 			done();
 		});
 	})
@@ -51,7 +43,6 @@ describe("indexPageTest", function () {
 			chai.expect(response.statusCode).to.equal(404);
 
 			if (error) return done(error);
-
 			done();
 		});
 	});
