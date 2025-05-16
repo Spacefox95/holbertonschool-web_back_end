@@ -8,7 +8,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/cart/:id(\\d+)", (req, res) => {
-	res.status(200).send("Payment methods for cart ", req.params.id);
+	res.status(200).send("Payment methods for cart " +  req.params.id);
 });
 
 app.listen(port, () => {
