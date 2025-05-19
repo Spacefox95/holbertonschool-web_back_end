@@ -3,8 +3,8 @@ import { createQueue } from "kue";
 const queue = createQueue();
 
 const data = {
-  phoneNumber: 'string',
-  message: 'string',
+  phoneNumber: '4153518780',
+  message: 'This is the code to verify your account',
 }
 
 const job = queue
