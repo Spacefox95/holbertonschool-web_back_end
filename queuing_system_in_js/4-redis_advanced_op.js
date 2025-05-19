@@ -1,39 +1,23 @@
-import { createClient, print, hset } from "redis";
-import { promisify } from "util";
+import { createClient, print } from "redis";
 
 const client = createClient();
 
 client.on("error", (err) =>
-	console.log("Redis Client Redis client not connected to the server:", err)
+  console.log("Redis Client Redis client not connected to the server:", err)
 );
 
 client.on("connect", async () => {
-	console.log("Redis client connected to the server");
+  console.log("Redis client connected to the server");
 });
 
-async function setNewSchool(schoolName, value) {
-	client.set(schoolName, value, print);
-}
+const key = "HolbertonSchools";
+client.hset(key, "Portland", 50, print);
+client.hset(key, "Seattle", 80, print);
+client.hset(key, "New York", 20, print);
+client.hset(key, "Bogota", 20, print);
+client.hset(key, "Cali", 40, print);
+client.hset(key, "Paris", 2, print);
 
-const res1 = await client.hset(
-	'HolbertonSchools',
-	{
-		'Portland': '50',
-		'Seattle': '80',
-		'New York': '20',
-		
-	}
-)
-
-const getAsync = promisify(client.get).bind(client);
-
-async function displaySchoolValue(schoolName) {
-	try {
-		const value = await getAsync(schoolName);
-		console.log(value);
-	} catch (err) {
-		console.error(err);
-	}
-}
-
-
+client.hgetall(key, (e, result) => {
+  console.log(result);
+});
